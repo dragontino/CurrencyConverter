@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Currency Converter</string>
+    <string name="settings_title">Settings</string>
+    <string name="from_currency_title">Source currency</string>
+    <string name="to_currency_title">Target currency</string>
+    <string name="convert_action">Convert</string>
+
+    <!--  Settings Screen  -->
+    <string name="dynamic_color">Use dynamic colors in the application design</string>
+    <string name="dynamic_color_desc">Application color palette automatically adapts and integrates with user settings</string>
+    <string name="save">Save</string>
+
+    <!--  Currencies  -->
+    <string name="ruble">Russian Ruble</string>
+    <string name="euro">Euro</string>
+    <string name="dollar">US Dollar</string>
+    <string name="pound_sterling">Pound Sterling</string>
+    <string name="tenge">Tenge</string>
+    <string name="dram">Armenian Dram</string>
+    <string name="lira">Turkish Lira</string>
+</resources>
