@@ -3,7 +3,7 @@ package com.currencyconverter.app.di
 import android.content.Context
 import com.currencyconverter.data.repository.ConversationRepositoryImpl
 import com.currencyconverter.data.repository.SettingsRepositoryImpl
-import com.currencyconverter.data.retrofit.ConverterAPI
+import com.currencyconverter.data.retrofit.RatesAPI
 import com.currencyconverter.data.storage.SharedPreferencesStorage
 import com.currencyconverter.domain.repository.ConversionRepository
 import com.currencyconverter.domain.repository.SettingsRepository
@@ -17,7 +17,7 @@ import javax.inject.Singleton
 class DataModule(private val context: Context) {
     @Singleton
     @Provides
-    fun provideConversionRepository(converter: ConverterAPI): ConversionRepository {
+    fun provideConversionRepository(converter: RatesAPI): ConversionRepository {
         return ConversationRepositoryImpl(converter)
     }
 
@@ -33,14 +33,14 @@ class DataModule(private val context: Context) {
 
     @Singleton
     @Provides
-    fun provideRetrofitService(retrofit: Retrofit): ConverterAPI {
-        return retrofit.create(ConverterAPI::class.java)
+    fun provideRetrofitService(retrofit: Retrofit): RatesAPI {
+        return retrofit.create(RatesAPI::class.java)
     }
 
     @Singleton
     @Provides
     fun provideRetrofit(): Retrofit = Retrofit.Builder()
-        .baseUrl("https://api.exchangeratesapi.io/v1/convert/")
+        .baseUrl("https://api.currencyapi.com/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 }

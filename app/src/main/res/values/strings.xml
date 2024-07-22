@@ -4,11 +4,13 @@
     <string name="from_currency_title">Source currency</string>
     <string name="to_currency_title">Target currency</string>
     <string name="convert_action">Convert</string>
+    <string name="amount_placeholder">Amount to convert</string>
 
     <!--  Settings Screen  -->
     <string name="dynamic_color">Use dynamic colors in the application design</string>
     <string name="dynamic_color_desc">Application color palette automatically adapts and integrates with user settings</string>
     <string name="save">Save</string>
+    <string name="color_scheme">Color Scheme</string>
 
     <!--  Currencies  -->
     <string name="ruble">Russian Ruble</string>

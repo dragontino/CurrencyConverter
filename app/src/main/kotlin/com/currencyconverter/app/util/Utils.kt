@@ -1,5 +1,7 @@
 package com.currencyconverter.app.util
 
+import android.content.res.Configuration
+import android.content.res.Resources
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
@@ -7,7 +9,11 @@ import com.currencyconverter.app.R
 import com.currencyconverter.domain.model.Currency
 
 val Color.reversed: Color
-    get() = copy(alpha = 1 - red, red = 1 - green, green = 1 - blue)
+    get() = copy(red = 1 - red, green = 1 - green, blue = 1 - blue)
+
+
+fun Resources.isDarkTheme(): Boolean =
+    (configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
 
 
 val Currency.title: String

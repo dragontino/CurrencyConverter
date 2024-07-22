@@ -21,11 +21,6 @@ android {
         }
 
         project.base.archivesName = "converter-$versionName"
-
-
-        properties["EXCHANGE_RATES_API_KEY"]?.let {
-            buildConfigField("String", "EXCHANGE_RATES_API_KEY", "\"$it\"")
-        }
     }
 
     buildTypes {

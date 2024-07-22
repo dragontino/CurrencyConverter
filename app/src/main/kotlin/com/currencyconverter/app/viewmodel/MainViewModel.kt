@@ -7,6 +7,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.currencyconverter.domain.model.ConversionQuery
+import com.currencyconverter.domain.model.ConversionResponse
 import com.currencyconverter.domain.model.Currency
 import com.currencyconverter.domain.usecase.ConversionUseCase
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -30,7 +31,7 @@ class MainViewModel @Inject constructor(
     var showFromCurrencySelectionDialog by mutableStateOf(false)
     var showToCurrencySelectionDialog by mutableStateOf(false)
 
-    var showResult by mutableStateOf(false)
+    var showResult by mutableStateOf(true)
 
     var result: String by mutableStateOf("")
         private set
@@ -41,12 +42,12 @@ class MainViewModel @Inject constructor(
             val amount = amount.toDoubleOrNull() ?: return@launch
 
             state = ViewModelState.Loading
-            val doubleResult = convert(fromCurrency, toCurrency, amount)
-            doubleResult.onSuccess {
-                result = it.toString()
+            val conversionResult = convert(fromCurrency, toCurrency, amount)
+            conversionResult.onSuccess {
+                result = it.resultAmount.toString()
                 showResult = true
             }
-            doubleResult.onFailure {
+            conversionResult.onFailure {
                 _snackbarFlow.emit(it.message ?: "Error!")
                 Log.e("MyTag", it.localizedMessage, it)
             }
@@ -55,7 +56,7 @@ class MainViewModel @Inject constructor(
     }
 
 
-    private suspend fun convert(from: Currency, to: Currency, amount: Double): Result<Double> {
+    private suspend fun convert(from: Currency, to: Currency, amount: Double): Result<ConversionResponse> {
         val query = ConversionQuery(from, to, amount)
         return useCase.convertCurrency(query)
     }

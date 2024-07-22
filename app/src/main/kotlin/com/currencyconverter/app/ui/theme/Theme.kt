@@ -15,16 +15,16 @@ import com.currencyconverter.domain.model.Settings
 
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
-    onPrimary = Color.White,
+    onPrimary = Color.Black,
     secondary = PurpleGrey80,
     tertiary = Pink80,
     background = BackgroundDark,
-    onBackground = Color.Black
+    onBackground = Color.White
 )
 
 private val LightColorScheme = lightColorScheme(
     primary = Purple40,
-    onPrimary = Color.Black,
+    onPrimary = Color.White,
     secondary = PurpleGrey40,
     tertiary = Pink40,
     background = Color.White,

@@ -4,19 +4,21 @@
     <string name="settings_title">Настройки</string>
     <string name="save">Сохранить</string>
     <string name="from_currency_title">Базовая валюта</string>
-    <string name="to_currency_title">Конечная валюта</string>
+    <string name="to_currency_title">Целевая валюта</string>
+    <string name="amount_placeholder">Сумма для конвертации</string>
+    <string name="convert_action">Конвертировать</string>
 
     <!-- Экран настроек   -->
     <string name="dynamic_color">Использовать в оформлении динамические цвета</string>
     <string name="dynamic_color_desc">Цветовая палитра приложения автоматически адаптируется и интегрируется с пользовательскими настройками</string>
+    <string name="color_scheme">Цветовая палитра</string>
 
     <!--  Валюты  -->
     <string name="ruble">Российский Рубль</string>
     <string name="euro">Евро</string>
-    <string name="dollar">Американский Доллар</string>
+    <string name="dollar">Доллар США</string>
     <string name="pound_sterling">Фунт стерлингов</string>
     <string name="tenge">Тенге</string>
     <string name="dram">Армянский Драм</string>
     <string name="lira">Турецкая Лира</string>
-    <string name="convert_action">Конвертировать</string>
 </resources>

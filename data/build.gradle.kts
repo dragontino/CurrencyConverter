@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -13,9 +15,15 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
 
-        properties["EXCHANGE_RATES_API_KEY"].let { property ->
-            buildConfigField("String", "EXCHANGE_RATES_API_KEY", "\"$property\"")
-        }
+        val apiKey = Properties()
+            .apply { project.rootProject.file("local.properties").inputStream().let(::load) }
+            .getProperty("CURRENCY_API_KEY", "")
+
+        buildConfigField(
+            "String",
+            "CURRENCY_API_KEY",
+            "\"$apiKey\""
+        )
     }
 
     buildTypes {
