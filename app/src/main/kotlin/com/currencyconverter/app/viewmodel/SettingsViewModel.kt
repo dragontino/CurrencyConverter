@@ -8,26 +8,28 @@ import androidx.lifecycle.viewModelScope
 import com.currencyconverter.domain.model.ColorScheme
 import com.currencyconverter.domain.model.Settings
 import com.currencyconverter.domain.usecase.SettingsUseCase
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class SettingsViewModel @Inject constructor(
     private val useCase: SettingsUseCase
 ) : ViewModel() {
-    var settings by mutableStateOf(Settings())
+    var settings: Settings by mutableStateOf(Settings())
         private set
 
     init {
-        viewModelScope.launch {
-            settings = useCase.getSettings()
-        }
+        useCase
+            .getSettings()
+            .onEach { settings = it }
+            .launchIn(viewModelScope)
     }
 
     fun updateScheme(newScheme: ColorScheme) {
         viewModelScope.launch {
             val newSettings = settings.copy(scheme = newScheme)
             useCase.putSettings(newSettings)
-            settings = newSettings
         }
     }
 

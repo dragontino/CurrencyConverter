@@ -1,6 +1,7 @@
 package com.currencyconverter.app.ui.screens
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -83,24 +84,29 @@ fun SettingsScreen(
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(16.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(
                     text = stringResource(R.string.color_scheme) + ":",
-                    style = MaterialTheme.typography.bodyLarge,
+                    style = MaterialTheme.typography.bodyMedium,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onBackground
                 )
 
-                SingleChoiceSegmentedButtonRow {
-                    ColorScheme.entries.forEach { scheme ->
-                        SegmentedButton(
-                            selected = scheme == viewModel.settings.scheme,
-                            onClick = { viewModel.updateScheme(scheme) },
-                            shape = RectangleShape
-                        ) {
-                            Text(scheme.name, style = MaterialTheme.typography.bodySmall)
+                Box(
+                    contentAlignment = Alignment.Center,
+                    modifier = Modifier.clip(MaterialTheme.shapes.medium)
+                ) {
+                    SingleChoiceSegmentedButtonRow {
+                        ColorScheme.entries.forEach { scheme ->
+                            SegmentedButton(
+                                selected = scheme == viewModel.settings.scheme,
+                                onClick = { viewModel.updateScheme(scheme) },
+                                shape = RectangleShape
+                            ) {
+                                Text(scheme.name, style = MaterialTheme.typography.bodySmall)
+                            }
                         }
                     }
                 }

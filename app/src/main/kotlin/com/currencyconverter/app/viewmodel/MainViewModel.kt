@@ -1,6 +1,5 @@
 package com.currencyconverter.app.viewmodel
 
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -49,7 +48,6 @@ class MainViewModel @Inject constructor(
             }
             conversionResult.onFailure {
                 _snackbarFlow.emit(it.message ?: "Error!")
-                Log.e("MyTag", it.localizedMessage, it)
             }
             state = ViewModelState.Stable
         }

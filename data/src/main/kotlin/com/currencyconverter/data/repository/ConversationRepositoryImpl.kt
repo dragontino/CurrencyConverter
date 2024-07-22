@@ -1,6 +1,5 @@
 package com.currencyconverter.data.repository
 
-import android.util.Log
 import com.currencyconverter.data.BuildConfig
 import com.currencyconverter.data.model.CurrencyApi
 import com.currencyconverter.data.retrofit.RatesAPI
@@ -21,10 +20,7 @@ class ConversationRepositoryImpl(private val converter: RatesAPI) : ConversionRe
         )
 
         return response.body()
-            ?.let {
-                Log.d("MyTag", it.toString())
-                Result.success(it.toConversionResponse(query))
-            }
+            ?.let { Result.success(it.toConversionResponse(query)) }
             ?: Result.failure(
                 Exception("Error ${response.code()}: ${response.errorBody()?.string()}")
             )
