@@ -7,11 +7,16 @@
     <string name="to_currency_title">Целевая валюта</string>
     <string name="amount_placeholder">Сумма для конвертации</string>
     <string name="convert_action">Конвертировать</string>
+    <string name="result_text">Обменный курс (на %s):</string>
+    <string name="result_title">Результат конвертации</string>
 
     <!-- Экран настроек   -->
     <string name="dynamic_color">Использовать в оформлении динамические цвета</string>
     <string name="dynamic_color_desc">Цветовая палитра приложения автоматически адаптируется и интегрируется с пользовательскими настройками</string>
     <string name="color_scheme">Цветовая палитра</string>
+    <string name="light_scheme">Светлая</string>
+    <string name="dark_scheme">Темная</string>
+    <string name="system_scheme">Системная</string>
 
     <!--  Валюты  -->
     <string name="ruble">Российский Рубль</string>

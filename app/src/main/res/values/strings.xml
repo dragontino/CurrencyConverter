@@ -5,12 +5,17 @@
     <string name="to_currency_title">Target currency</string>
     <string name="convert_action">Convert</string>
     <string name="amount_placeholder">Amount to convert</string>
+    <string name="result_text">Conversion rate (as of %s):</string>
+    <string name="result_title">Conversion result</string>
 
     <!--  Settings Screen  -->
     <string name="dynamic_color">Use dynamic colors in the application design</string>
     <string name="dynamic_color_desc">Application color palette automatically adapts and integrates with user settings</string>
     <string name="save">Save</string>
     <string name="color_scheme">Color Scheme</string>
+    <string name="light_scheme">Light</string>
+    <string name="dark_scheme">Dark</string>
+    <string name="system_scheme">System</string>
 
     <!--  Currencies  -->
     <string name="ruble">Russian Ruble</string>

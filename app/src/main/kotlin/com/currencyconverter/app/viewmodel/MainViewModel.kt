@@ -30,22 +30,14 @@ class MainViewModel @Inject constructor(
     var showFromCurrencySelectionDialog by mutableStateOf(false)
     var showToCurrencySelectionDialog by mutableStateOf(false)
 
-    var showResult by mutableStateOf(true)
 
-    var result: String by mutableStateOf("")
-        private set
-
-
-    fun convert() {
+    fun convert(onSuccess: (ConversionResponse) -> Unit) {
         viewModelScope.launch {
             val amount = amount.toDoubleOrNull() ?: return@launch
 
             state = ViewModelState.Loading
             val conversionResult = convert(fromCurrency, toCurrency, amount)
-            conversionResult.onSuccess {
-                result = it.resultAmount.toString()
-                showResult = true
-            }
+            conversionResult.onSuccess(onSuccess)
             conversionResult.onFailure {
                 _snackbarFlow.emit(it.message ?: "Error!")
             }

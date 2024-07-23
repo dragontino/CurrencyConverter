@@ -5,8 +5,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
@@ -56,6 +58,7 @@ import com.currencyconverter.app.util.reversed
 import com.currencyconverter.app.util.title
 import com.currencyconverter.app.viewmodel.MainViewModel
 import com.currencyconverter.app.viewmodel.ViewModelState
+import com.currencyconverter.domain.model.ConversionResponse
 import com.currencyconverter.domain.model.Currency
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -64,6 +67,7 @@ fun MainScreen(
     viewModel: MainViewModel,
     title: String,
     navigateToSettings: () -> Unit,
+    navigateToResult: (ConversionResponse) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val snackbarHostState = remember(::SnackbarHostState)
@@ -114,7 +118,7 @@ fun MainScreen(
                         contentDescription = null
                     )
                 },
-                onClick = viewModel::convert,
+                onClick = { viewModel.convert(navigateToResult) },
                 containerColor = MaterialTheme.colorScheme.primaryContainer,
                 contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
                 elevation = FloatingActionButtonDefaults.loweredElevation()
@@ -176,7 +180,7 @@ private fun MainContent(
     }
 
     Column(
-        verticalArrangement = Arrangement.spacedBy(16.dp),
+        verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .padding(top = 16.dp)
@@ -246,6 +250,8 @@ private fun MainContent(
                 color = MaterialTheme.colorScheme.onBackground
             )
 
+            Spacer(modifier = Modifier.height(16.dp))
+
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(16.dp)
@@ -259,29 +265,12 @@ private fun MainContent(
                     style = MaterialTheme.typography.bodyLarge,
                     color = MaterialTheme.colorScheme.onBackground,
                 )
+                Icon(
+                    imageVector = Icons.Rounded.KeyboardArrowDown,
+                    contentDescription = null,
+                    modifier = Modifier.scale(1.1f)
+                )
             }
-
-            Icon(
-                imageVector = Icons.Rounded.KeyboardArrowDown,
-                contentDescription = null,
-                modifier = Modifier.scale(1.1f)
-            )
-        }
-
-        if (viewModel.showResult) {
-            OutlinedTextField(
-                value = viewModel.result,
-                onValueChange = {},
-                suffix = { CurrencySymbol(currency = viewModel.toCurrency) },
-                readOnly = true,
-                shape = MaterialTheme.shapes.medium,
-                label = {
-                    Text("Результат конвертации")
-                },
-                modifier = Modifier
-                    .padding(16.dp)
-                    .fillMaxWidth()
-            )
         }
     }
 }
